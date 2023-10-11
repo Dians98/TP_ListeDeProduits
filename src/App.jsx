@@ -25,7 +25,7 @@ function App() {
   /* On va filtrer les produits */ 
   const visibleProduct = PRODUCTS.filter(products => {
     /* If stockedOnly est true && produits est différents de stocked */
-    if(showStockedOnly && !products.stocked)
+    if(showStockedOnly && !products.stocked) /* TEST commit */
     {
       /* On exclue le produits */
       return false;
