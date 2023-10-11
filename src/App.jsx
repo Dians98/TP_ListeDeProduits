@@ -6,7 +6,7 @@ import { Checkbox } from './components/forms/Checkbox';
 import { ProductCategoryRow } from './components/products/ProductCategoryRow';
 import { ProductRow } from './components/products/productRow';
 import { useState } from 'react';
-/* TEst */
+/* TEst manala commentaire */
 const PRODUCTS = [  
   {category: "Fruits", price: "$1", stocked: true, name: "Apple"},  
   {category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit"},  
@@ -25,7 +25,7 @@ function App() {
   /* On va filtrer les produits */ 
   const visibleProduct = PRODUCTS.filter(products => {
     /* If stockedOnly est true && produits est différents de stocked */
-    if(showStockedOnly && !products.stocked) /* TEST commit */
+    if(showStockedOnly && !products.stocked) 
     {
       /* On exclue le produits */
       return false;
