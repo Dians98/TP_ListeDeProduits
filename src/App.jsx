@@ -36,6 +36,11 @@ function App() {
     {
       return false;
     }
+
+    if(filterPrice!=0 && (products.price > filterPrice )) /* */
+    {
+      return false;
+    }
     
     return true
     
