@@ -21,6 +21,7 @@ function App() {
 
   const [showStockedOnly, setShowStockedOnly] = useState(false);
   const [searchStockedOnly, setSearchStockedOnly] = useState('');
+  const [filterPrice, setFilterPrice] = useState(0);
 
   /* On va filtrer les produits */ 
   const visibleProduct = PRODUCTS.filter(products => {
