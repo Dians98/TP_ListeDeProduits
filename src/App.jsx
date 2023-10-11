@@ -1,19 +1,19 @@
 /* eslint-disable react/prop-types */
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import {Input} from "./components/forms/Input.jsx";
 import { Checkbox } from './components/forms/Checkbox';
 import { ProductCategoryRow } from './components/products/ProductCategoryRow';
 import { ProductRow } from './components/products/productRow';
 import { useState } from 'react';
+import { InputRangePrice } from './components/forms/InputRangePrice';
 
 const PRODUCTS = [  
-  {category: "Fruits", price: "$1", stocked: true, name: "Apple"},  
-  {category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit"},  
-  {category: "Fruits", price: "$2", stocked: false, name: "Passionfruit"},  
-  {category: "Vegetables", price: "$2", stocked: true, name: "Spinach"},  
-  {category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin"},  
-  {category: "Vegetables", price: "$1", stocked: true, name: "Peas"}  
+  {category: "Fruits", price: 1, stocked: true, name: "Apple"},  
+  {category: "Fruits", price: 1, stocked: true, name: "Dragonfruit"},  
+  {category: "Fruits", price: 2, stocked: false, name: "Passionfruit"},  
+  {category: "Vegetables", price: 2, stocked: true, name: "Spinach"},  
+  {category: "Vegetables", price: 4, stocked: false, name: "Pumpkin"},  
+  {category: "Vegetables", price: 1, stocked: true, name: "Peas"}  
 ]
 
 
@@ -23,13 +23,14 @@ function App() {
   const [searchStockedOnly, setSearchStockedOnly] = useState('');
   const [filterPrice, setFilterPrice] = useState(0);
 
+
   /* On va filtrer les produits */ 
   const visibleProduct = PRODUCTS.filter(products => {
     /* If stockedOnly est true && produits est différents de stocked */
     if(showStockedOnly && !products.stocked) 
     {
       /* On exclue le produits */
-      return false;
+      return false; 
     }
 
     /* If searchStockedOnly n'est pas vide, et que le nom du produits inclus ce qu'il y a dans la recherche*/
@@ -62,12 +63,13 @@ function App() {
 }
 
 
-  function SearchBar({showStockedOnly, onShowStockedOnlyChanged,search,onChangedSearchStockedOnly })
+  function SearchBar({showStockedOnly, onShowStockedOnlyChanged,search,onChangedSearchStockedOnly, filterPrice, onChangedFilterPrice})
   {
     return (
       <div>
         <div className="mb-3">
-          <Input value={search} onChange={onChangedSearchStockedOnly} placeholder = "Rechercher..."></Input>
+          <Input value={search} onChange={onChangedSearchStockedOnly} placeholder = "Rechercher..." ></Input>
+          <InputRangePrice value={filterPrice} onChange={onChangedFilterPrice}></InputRangePrice>
           <Checkbox checked={showStockedOnly} onChange={onShowStockedOnlyChanged} label="N'afficher que les produits en stock"></Checkbox>
         </div>
       </div>
@@ -105,7 +107,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {rows}
+          {rows} 
         </tbody>
       </table>
     )
