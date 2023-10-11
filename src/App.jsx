@@ -54,7 +54,8 @@ function App() {
   ALORS, on leur passe juste la fonction callback */
   return (
     <div className='container my-3'>
-      <SearchBar showStockedOnly={showStockedOnly} onShowStockedOnlyChanged = {setShowStockedOnly} search={searchStockedOnly} onChangedSearchStockedOnly={setSearchStockedOnly}></SearchBar>
+      <SearchBar showStockedOnly={showStockedOnly} onShowStockedOnlyChanged = {setShowStockedOnly} search={searchStockedOnly} onChangedSearchStockedOnly={setSearchStockedOnly}
+      filterPrice={filterPrice} onChangedFilterPrice={setFilterPrice}></SearchBar>
       <ProductTable products={visibleProduct}></ProductTable>
     </div>
   )
