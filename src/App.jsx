@@ -6,8 +6,7 @@ import { Checkbox } from './components/forms/Checkbox';
 import { ProductCategoryRow } from './components/products/ProductCategoryRow';
 import { ProductRow } from './components/products/productRow';
 import { useState } from 'react';
-
-
+/* TEst */
 const PRODUCTS = [  
   {category: "Fruits", price: "$1", stocked: true, name: "Apple"},  
   {category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit"},  
