@@ -1,19 +1,19 @@
 /* eslint-disable react/prop-types */
-
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
 import {Input} from "./components/forms/Input.jsx";
 import { Checkbox } from './components/forms/Checkbox';
 import { ProductCategoryRow } from './components/products/ProductCategoryRow';
 import { ProductRow } from './components/products/productRow';
 import { useState } from 'react';
-import { InputRangePrice } from './components/forms/InputRangePrice';
 
 const PRODUCTS = [  
-  {category: "Fruits", price: 1, stocked: true, name: "Apple"},  
-  {category: "Fruits", price: 1, stocked: true, name: "Dragonfruit"},  
-  {category: "Fruits", price: 2, stocked: false, name: "Passionfruit"},  
-  {category: "Vegetables", price: 2, stocked: true, name: "Spinach"},  
-  {category: "Vegetables", price: 4, stocked: false, name: "Pumpkin"},  
-  {category: "Vegetables", price: 1, stocked: true, name: "Peas"}  
+  {category: "Fruits", price: "$1", stocked: true, name: "Apple"},  
+  {category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit"},  
+  {category: "Fruits", price: "$2", stocked: false, name: "Passionfruit"},  
+  {category: "Vegetables", price: "$2", stocked: true, name: "Spinach"},  
+  {category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin"},  
+  {category: "Vegetables", price: "$1", stocked: true, name: "Peas"}  
 ]
 
 
@@ -21,8 +21,6 @@ function App() {
 
   const [showStockedOnly, setShowStockedOnly] = useState(false);
   const [searchStockedOnly, setSearchStockedOnly] = useState('');
-  const [filterPrice, setFilterPrice] = useState(0);
-
 
   /* On va filtrer les produits */ 
   const visibleProduct = PRODUCTS.filter(products => {
@@ -30,16 +28,11 @@ function App() {
     if(showStockedOnly && !products.stocked) 
     {
       /* On exclue le produits */
-      return false; 
+      return false;
     }
 
     /* If searchStockedOnly n'est pas vide, et que le nom du produits inclus ce qu'il y a dans la recherche*/
     if(searchStockedOnly && !products.name.includes(searchStockedOnly))
-    {
-      return false;
-    }
-
-    if(filterPrice!=0 && (products.price > filterPrice ))
     {
       return false;
     }
@@ -55,21 +48,19 @@ function App() {
   ALORS, on leur passe juste la fonction callback */
   return (
     <div className='container my-3'>
-      <SearchBar showStockedOnly={showStockedOnly} onShowStockedOnlyChanged = {setShowStockedOnly} search={searchStockedOnly} onChangedSearchStockedOnly={setSearchStockedOnly}
-      filterPrice={filterPrice} onChangedFilterPrice={setFilterPrice}></SearchBar>
+      <SearchBar showStockedOnly={showStockedOnly} onShowStockedOnlyChanged = {setShowStockedOnly} search={searchStockedOnly} onChangedSearchStockedOnly={setSearchStockedOnly}></SearchBar>
       <ProductTable products={visibleProduct}></ProductTable>
     </div>
   )
 }
 
 
-  function SearchBar({showStockedOnly, onShowStockedOnlyChanged,search,onChangedSearchStockedOnly, filterPrice, onChangedFilterPrice})
+  function SearchBar({showStockedOnly, onShowStockedOnlyChanged,search,onChangedSearchStockedOnly })
   {
     return (
       <div>
         <div className="mb-3">
-          <Input value={search} onChange={onChangedSearchStockedOnly} placeholder = "Rechercher..." ></Input>
-          <InputRangePrice value={filterPrice} onChange={onChangedFilterPrice}></InputRangePrice>
+          <Input value={search} onChange={onChangedSearchStockedOnly} placeholder = "Rechercher..."></Input>
           <Checkbox checked={showStockedOnly} onChange={onShowStockedOnlyChanged} label="N'afficher que les produits en stock"></Checkbox>
         </div>
       </div>
@@ -107,7 +98,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {rows} 
+          {rows}
         </tbody>
       </table>
     )
