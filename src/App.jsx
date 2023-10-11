@@ -78,7 +78,7 @@ function App() {
 
   function ProductTable({products})
   {
-    /* On crée un tableau pour stocker les valeurs à afficher*/
+    /* On crée un tableau pour stocker les valeurs à afficher */
     const rows = [];
     /* Cette variable c'est pour savoir quelle est la derniere catégorie */
     let lastCategory = null;
